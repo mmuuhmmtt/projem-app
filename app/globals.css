@@ -20,6 +20,11 @@
     --foreground: #ededed;
   }
 }
+.dark{
+  --foreground: #171717;
+  --background: #ffffff;
+  
+}
 
 /* Temel Responsive Tasarım Ayarları */
 html {
