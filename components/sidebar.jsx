@@ -9,7 +9,7 @@ export function Sidebar() {
 
     return (
         <div
-            className="w-64 shrink-0 bg-white shadow-md flex flex-col h-full relative"
+            className="w-64 shrink-0 bg-white shadow-md flex flex-col h-full relative p-4"
         >
             <div className="p-4 border-b">
                 <h1 className="text-xl font-bold text-gray-800">Sohbet Uygulaması</h1>
