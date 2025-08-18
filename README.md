@@ -26,7 +26,7 @@ Amaç, gerçek bir backend kullanmadan **kullanıcı arayüzü yapısını, veri
   - ✅ Kullanıcı Mesajı (soru)  
   - 🤖 Asistan Mesajı (cevap)  
   - 🔧 Araç Çağrısı Mesajı (ör. mock web araması veya hisse fiyatı)  
-  - 📚 Bilgi Bankası Yanıtı (atıf ve kaynaklarla)  
+  - 📚 Bilgi  Yanıtı   
 
 ---
 
@@ -42,7 +42,7 @@ Amaç, gerçek bir backend kullanmadan **kullanıcı arayüzü yapısını, veri
 
 - **Framework:** React (veya Next.js)  
 - **Backend:** Mock / Hardcoded veriler (API yok)  
-- **Durum Yönetimi:** React state veya Context  
-- **Dağıtım:** Vercel / Netlify üzerinde canlıya alınmış sürüm  
+- **Durum Yönetimi:** React state , Context  
+- **Dağıtım:** Vercel / Netlify
 
 
