@@ -1,4 +1,4 @@
-# 💬 Kullanıcılar, Ajanlar ve Oturumlarla Mock Chat Uygulaması  
+# 💬 Mock Chat Uygulaması: Kullanıcı & Asistan & Oturum Yönetimi 
 
 Bu proje, b **minimalist bir sohbet uygulamasıdır**.  
 Amaç, gerçek bir backend kullanmadan **kullanıcı arayüzü yapısını, veri akışlarını ve kullanıcı etkileşimlerini** test etmektir.  
