@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+💬 Kullanıcılar, Ajanlar ve Oturumlarla Mock Chat Uygulaması
 
-## Getting Started
+Bu proje,  minimalist bir sohbet uygulamasıdır.
+Amaç, gerçek bir backend kullanmadan kullanıcı arayüzü yapısını, veri akışlarını ve kullanıcı etkileşimlerini test etmektir.
 
-First, run the development server:
+🚀 Özellikler
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Kullanıcı Yönetimi
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Var olan kullanıcıyı seçme veya yeni kullanıcı oluşturma.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Ajan Yönetimi
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Her kullanıcıya ajan atama veya yeni ajan ekleme.
 
-## Learn More
+Oturum Yönetimi
 
-To learn more about Next.js, take a look at the following resources:
+Her ajan için birden fazla oturum açabilme.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Her oturumun Oturum ID’si ve Sohbet Geçmişi bulunur.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Mesaj Türleri
 
-## Deploy on Vercel
+✅ Kullanıcı Mesajı (soru)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🤖 Asistan Mesajı (cevap)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔧 Araç Çağrısı Mesajı (ör. mock web araması veya hisse fiyatı)
+
+📚 Bilgi Bankası Yanıtı (atıf ve kaynaklarla)
+
+🖥️ Arayüz
+
+Kenar Çubuğu (Sidebar): Kullanıcı → Ajan → Oturum seçimi
+
+Sohbet Penceresi: Mesaj geçmişi, mesaj tipine göre farklı görsel ayrım
+
+Mesaj Kutusu: Yeni mesaj gönderme (mock yanıt simülasyonu)
+
+🛠️ Teknik Bilgiler
+
+Framework: React (veya Next.js)
+
+Backend: Mock / Hardcoded veriler (API yok)
+
+Durum Yönetimi: React state veya Context
+
+Dağıtım: Vercel / Netlify üzerinde canlıya alınmış sürüm
+
+
+
