@@ -1,54 +1,48 @@
+# 💬 Kullanıcılar, Ajanlar ve Oturumlarla Mock Chat Uygulaması  
+
+Bu proje, b **minimalist bir sohbet uygulamasıdır**.  
+Amaç, gerçek bir backend kullanmadan **kullanıcı arayüzü yapısını, veri akışlarını ve kullanıcı etkileşimlerini** test etmektir.  
+
+---
+
 ## 🌐 Canlı Demo  
-🔗 [Projeyi Görüntüle]([https://senin-vercel-linkin.vercel.app](https://projem-app.vercel.app/))  
+🔗 [Projeyi Görüntüle](https://projem-app.vercel.app/)  
 
-💬 Kullanıcılar, Ajanlar ve Oturumlarla Mock Chat Uygulaması
+---
 
-Bu proje,  minimalist bir sohbet uygulamasıdır.
-Amaç, gerçek bir backend kullanmadan kullanıcı arayüzü yapısını, veri akışlarını ve kullanıcı etkileşimlerini test etmektir.
+## 🚀 Özellikler  
 
-🚀 Özellikler
+- **Kullanıcı Yönetimi**  
+  - Var olan kullanıcıyı seçme veya yeni kullanıcı oluşturma.  
 
-Kullanıcı Yönetimi
+- **Ajan Yönetimi**  
+  - Her kullanıcıya ajan atama veya yeni ajan ekleme.  
 
-Var olan kullanıcıyı seçme veya yeni kullanıcı oluşturma.
+- **Oturum Yönetimi**  
+  - Her ajan için birden fazla oturum açabilme.  
+  - Her oturumun **Oturum ID’si** ve **Sohbet Geçmişi** bulunur.  
 
-Ajan Yönetimi
+- **Mesaj Türleri**  
+  - ✅ Kullanıcı Mesajı (soru)  
+  - 🤖 Asistan Mesajı (cevap)  
+  - 🔧 Araç Çağrısı Mesajı (ör. mock web araması veya hisse fiyatı)  
+  - 📚 Bilgi Bankası Yanıtı (atıf ve kaynaklarla)  
 
-Her kullanıcıya ajan atama veya yeni ajan ekleme.
+---
 
-Oturum Yönetimi
+## 🖥️ Arayüz  
 
-Her ajan için birden fazla oturum açabilme.
+- **Kenar Çubuğu (Sidebar):** Kullanıcı → Ajan → Oturum seçimi  
+- **Sohbet Penceresi:** Mesaj geçmişi, mesaj tipine göre farklı görsel ayrım  
+- **Mesaj Kutusu:** Yeni mesaj gönderme (mock yanıt simülasyonu)  
 
-Her oturumun Oturum ID’si ve Sohbet Geçmişi bulunur.
+---
 
-Mesaj Türleri
+## 🛠️ Teknik Bilgiler  
 
-✅ Kullanıcı Mesajı (soru)
-
-🤖 Asistan Mesajı (cevap)
-
-🔧 Araç Çağrısı Mesajı (ör. mock web araması veya hisse fiyatı)
-
-📚 Bilgi Bankası Yanıtı (atıf ve kaynaklarla)
-
-🖥️ Arayüz
-
-Kenar Çubuğu (Sidebar): Kullanıcı → Ajan → Oturum seçimi
-
-Sohbet Penceresi: Mesaj geçmişi, mesaj tipine göre farklı görsel ayrım
-
-Mesaj Kutusu: Yeni mesaj gönderme (mock yanıt simülasyonu)
-
-🛠️ Teknik Bilgiler
-
-Framework: React (veya Next.js)
-
-Backend: Mock / Hardcoded veriler (API yok)
-
-Durum Yönetimi: React state veya Context
-
-Dağıtım: Vercel / Netlify üzerinde canlıya alınmış sürüm
-
+- **Framework:** React (veya Next.js)  
+- **Backend:** Mock / Hardcoded veriler (API yok)  
+- **Durum Yönetimi:** React state veya Context  
+- **Dağıtım:** Vercel / Netlify üzerinde canlıya alınmış sürüm  
 
 
