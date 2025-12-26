@@ -14,14 +14,14 @@ export default function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-700 animate-pulse"></div>
+      <div className="w-10 h-10 rounded-xl bg-[#f5f5f5] dark:bg-[#2d2d2d] animate-pulse"></div>
     );
   }
 
   return (
     <button
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-      className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 transition-all shadow-sm hover:shadow-md active:scale-95"
+      className="p-2.5 rounded-xl bg-[#f5f5f5] dark:bg-[#2d2d2d] hover:bg-[#e5e5e5] dark:hover:bg-[#404040] text-[#1a1a1a] dark:text-[#e5e5e5] transition-all shadow-sm hover:shadow-md active:scale-95"
       aria-label="Tema Değiştir"
     >
       {resolvedTheme === 'dark' ? (

@@ -8,19 +8,19 @@ export function MessageBubble({ message }) {
         switch (message.type) {
             case 'user':
                 return (
-                    <div className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-4 rounded-2xl rounded-tr-sm shadow-lg shadow-indigo-500/20">
-                        <div className="text-sm leading-relaxed">{message.content}</div>
+                    <div className="bg-[#f5f5f5] dark:bg-[#2d2d2d] text-[#1a1a1a] dark:text-[#e5e5e5] px-4 py-3 rounded-2xl">
+                        <div className="text-[15px] leading-relaxed">{message.content}</div>
                     </div>
                 );
             case 'assistant':
                 return (
-                    <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 p-4 rounded-2xl rounded-tl-sm shadow-md border border-slate-200 dark:border-slate-700">
-                        <div className="text-sm leading-relaxed whitespace-pre-line">{message.content}</div>
+                    <div className="text-[#1a1a1a] dark:text-[#e5e5e5]">
+                        <div className="text-[15px] leading-relaxed whitespace-pre-line">{message.content}</div>
 
                         
                         {message.citations && message.citations.length > 0 && (
-                            <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
-                                <div className="text-xs font-semibold text-slate-600 dark:text-slate-400 mb-2 flex items-center gap-1">
+                            <div className="mt-3 pt-3 border-t border-[#e5e5e5] dark:border-[#2d2d2d]">
+                                <div className="text-xs font-semibold text-[#737373] dark:text-[#a3a3a3] mb-2 flex items-center gap-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3.5 h-3.5">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                                     </svg>
@@ -84,16 +84,16 @@ export function MessageBubble({ message }) {
         switch (message.type) {
             case 'user':
                 return (
-                    <div className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-white text-sm font-semibold bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                    <div className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center bg-[#d4d4d4] dark:bg-[#404040]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 text-[#1a1a1a] dark:text-[#e5e5e5]">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                         </svg>
                     </div>
                 );
             case 'assistant':
                 return (
-                    <div className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-white text-sm font-semibold bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                    <div className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center bg-[#d4d4d4] dark:bg-[#404040]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 text-[#1a1a1a] dark:text-[#e5e5e5]">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
                         </svg>
                     </div>
@@ -113,16 +113,12 @@ export function MessageBubble({ message }) {
 
     return (
         <div className={`flex animate-fade-in ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className="max-w-[75%] md:max-w-[65%]">
-                <div className={`flex items-end gap-3 ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+            <div className="max-w-[85%]">
+                <div className={`flex items-start gap-4 ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                     {getAvatar()}
                     
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                         {renderMessageContent()}
-                        
-                        <div className={`text-xs text-slate-500 dark:text-slate-400 mt-2 px-1 ${message.type === 'user' ? 'text-right' : 'text-left'}`}>
-                            {format(new Date(message.timestamp), 'dd MMM yyyy, HH:mm', { locale: tr })}
-                        </div>
                     </div>
                 </div>
             </div>
