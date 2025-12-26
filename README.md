@@ -1,6 +1,6 @@
-# Chat Uygulaması
+# AI ChatHub - Yapay Zeka Destekli Sohbet Platformu
 
-Next.js ile geliştirilmiş modern bir sohbet uygulaması. Kullanıcı, agent ve oturum yönetimi ile gerçek YAPAY ZEKA API entegrasyonu içerir.
+Next.js ile geliştirilmiş modern bir sohbet uygulaması. Kullanıcı, agent ve oturum yönetimi ile <span style="color: #6366f1; font-weight: bold;"> YAPAY ZEKA API</span> entegrasyonu içerir.
 
 ## Özellikler
 
