@@ -1,6 +1,6 @@
 # Chat Uygulaması
 
-Next.js ile geliştirilmiş modern bir sohbet uygulaması. Kullanıcı, agent ve oturum yönetimi ile gerçek yapay zeka API entegrasyonu içerir.
+Next.js ile geliştirilmiş modern bir sohbet uygulaması. Kullanıcı, agent ve oturum yönetimi ile gerçek YAPAY ZEKA API entegrasyonu içerir.
 
 ## Özellikler
 
