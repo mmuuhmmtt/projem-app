@@ -12,6 +12,7 @@ const defaultContextValue = {
     selectedAgent: null,
     selectedSession: null,
     currentMessages: [],
+    isLoading: false,
     selectUser: () => {},
     createUser: () => {},
     selectAgent: () => {},
@@ -45,6 +46,7 @@ export function AppProvider({ children }) {
     const [selectedAgent, setSelectedAgent] = useState(null);
     const [selectedSession, setSelectedSession] = useState(null);
     const [currentMessages, setCurrentMessages] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const selectUser = useCallback((userId) => {
         const user = users.find(u => u.id === userId);
@@ -105,8 +107,8 @@ export function AppProvider({ children }) {
         return newSession;
     }, [selectedAgent]);
 
-    const sendMessage = useCallback((content) => {
-        if (!selectedSession) return;
+    const sendMessage = useCallback(async (content) => {
+        if (!selectedSession || isLoading) return;
 
         const userMessage = {
             id: `msg-${Date.now()}`,
@@ -116,50 +118,69 @@ export function AppProvider({ children }) {
             timestamp: new Date().toISOString()
         };
 
-        const assistantMessage = {
-            id: `msg-${Date.now() + 1}`,
-            sessionId: selectedSession.id,
-            type: 'assistant',
-            content: `"${content}" sorunuza cevabım şudur: Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-            timestamp: new Date().toISOString(),
-            citations: Math.random() > 0.5 ? [
-                {text: 'Kaynak 1', link: '#'},
-                {text: 'Kaynak 2', link: '#'}
-            ] : []
-        };
+        // Kullanıcı mesajını hemen ekle
+        setMessages(prevMessages => [...prevMessages, userMessage]);
+        setCurrentMessages(prevMessages => [...prevMessages, userMessage]);
 
-        setMessages(prevMessages => {
-            const newMessages = [...prevMessages, userMessage, assistantMessage];
+        // Loading başlat
+        setIsLoading(true);
 
-            if (Math.random() > 0.7) {
-                const toolMessage = {
-                    id: `msg-${Date.now() + 2}`,
-                    sessionId: selectedSession.id,
-                    type: 'tool',
-                    toolName: Math.random() > 0.5 ? 'web-search' : 'calculator',
-                    content: 'Bu bir araç çağrısından dönen yanıttır.',
-                    timestamp: new Date().toISOString()
-                };
-                newMessages.push(toolMessage);
+        try {
+            // Konuşma geçmişini hazırla (son 10 mesaj)
+            const conversationHistory = currentMessages
+                .filter(msg => msg.type === 'user' || msg.type === 'assistant')
+                .slice(-10);
+
+            // API'ye istek gönder
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: content,
+                    conversationHistory: conversationHistory
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'AI yanıtı alınamadı');
             }
 
-            return newMessages;
-        });
-
-        setCurrentMessages(prevMessages => [
-            ...prevMessages,
-            userMessage,
-            assistantMessage,
-            ...(Math.random() > 0.7 ? [{
-                id: `msg-${Date.now() + 2}`,
+            const assistantMessage = {
+                id: `msg-${Date.now() + 1}`,
                 sessionId: selectedSession.id,
-                type: 'tool',
-                toolName: Math.random() > 0.5 ? 'web-search' : 'calculator',
-                content: 'Bu bir araç çağrısından dönen yanıttır.',
-                timestamp: new Date().toISOString()
-            }] : [])
-        ]);
-    }, [selectedSession]);
+                type: 'assistant',
+                content: data.message || 'Yanıt alınamadı',
+                timestamp: new Date().toISOString(),
+                citations: []
+            };
+
+            // Asistan mesajını ekle
+            setMessages(prevMessages => [...prevMessages, assistantMessage]);
+            setCurrentMessages(prevMessages => [...prevMessages, assistantMessage]);
+
+        } catch (error) {
+            console.error('Mesaj gönderme hatası:', error);
+            
+            // Hata mesajı göster
+            const errorMessage = {
+                id: `msg-${Date.now() + 1}`,
+                sessionId: selectedSession.id,
+                type: 'assistant',
+                content: `Üzgünüm, bir hata oluştu: ${error.message}. Lütfen tekrar deneyin veya API anahtarınızı kontrol edin.`,
+                timestamp: new Date().toISOString(),
+                citations: []
+            };
+
+            setMessages(prevMessages => [...prevMessages, errorMessage]);
+            setCurrentMessages(prevMessages => [...prevMessages, errorMessage]);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [selectedSession, currentMessages, isLoading]);
 
     const getUserAgents = useCallback(() => {
         if (!selectedUser) return [];
@@ -186,6 +207,7 @@ export function AppProvider({ children }) {
         selectedAgent,
         selectedSession,
         currentMessages,
+        isLoading,
         selectUser,
         createUser,
         selectAgent,
@@ -197,7 +219,7 @@ export function AppProvider({ children }) {
         getAgentSessions
     }), [
         users, agents, sessions, messages,
-        selectedUser, selectedAgent, selectedSession, currentMessages,
+        selectedUser, selectedAgent, selectedSession, currentMessages, isLoading,
         selectUser, createUser, selectAgent, createAgent,
         selectSession, createSession, sendMessage,
         getUserAgents, getAgentSessions

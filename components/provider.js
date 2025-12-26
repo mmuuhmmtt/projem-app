@@ -5,11 +5,11 @@ import { ThemeProvider } from 'next-themes';
 
 export function Providers({ children }) {
   return (
-    <AppProvider>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <AppProvider>
         {children}
-      </ThemeProvider>
-    </AppProvider>
+      </AppProvider>
+    </ThemeProvider>
   );
 }
 
