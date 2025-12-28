@@ -49,13 +49,26 @@ export function AppProvider({ children }) {
 
     // Yeni kullanıcı oluştur ve direkt sohbete başlat
     const createUser = useCallback((name) => {
+        const trimmedName = name.trim();
         const newUser = {
             id: `user-${Date.now()}`,
-            name: name.trim()
+            name: trimmedName
         };
         setUsers(prevUsers => [...prevUsers, newUser]);
         setSelectedUser(newUser);
-        setCurrentMessages([]); // Yeni kullanıcı için boş mesaj listesi
+        
+        // Yeni kullanıcı için hoş geldin mesajı ekle
+        const welcomeMessage = {
+            id: `msg-welcome-${newUser.id}`,
+            userId: newUser.id,
+            type: 'assistant',
+            content: `Merhaba ${trimmedName}! Size nasıl yardımcı olabilirim?`,
+            timestamp: new Date().toISOString(),
+            citations: []
+        };
+        setCurrentMessages([welcomeMessage]);
+        setMessages(prevMessages => [...prevMessages, welcomeMessage]);
+        
         return newUser;
     }, []);
 
