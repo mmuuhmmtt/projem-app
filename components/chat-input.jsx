@@ -20,14 +20,14 @@ export function ChatInput() {
     }
 
     return (
-        <div className="border-t border-[#e5e5e5] dark:border-[#2d2d2d] bg-[#ffffff] dark:bg-[#1a1a1a]">
+        <div className="border-t border-[#e5e5e5] dark:border-[#2d2d2d] bg-[#ffffff] dark:bg-[#1a1a1a] safe-area-bottom">
             <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
-                <div className="p-4">
+                <div className="p-3 md:p-4">
                     <div className="flex gap-2 items-end">
                         <div className="flex-1 relative">
                             <textarea
                                 rows={1}
-                                className="w-full px-4 py-3 pr-12 bg-[#ffffff] dark:bg-[#1a1a1a] border border-[#d4d4d4] dark:border-[#404040] rounded-2xl focus:outline-none focus:ring-1 focus:ring-[#a3a3a3] dark:focus:ring-[#737373] text-[#1a1a1a] dark:text-[#e5e5e5] placeholder-[#a3a3a3] dark:placeholder-[#737373] resize-none text-[15px] leading-relaxed"
+                                className="w-full px-3 md:px-4 py-2.5 md:py-3 pr-10 md:pr-12 bg-[#ffffff] dark:bg-[#1a1a1a] border border-[#d4d4d4] dark:border-[#404040] rounded-2xl focus:outline-none focus:ring-1 focus:ring-[#a3a3a3] dark:focus:ring-[#737373] text-[#1a1a1a] dark:text-[#e5e5e5] placeholder-[#a3a3a3] dark:placeholder-[#737373] resize-none text-sm md:text-[15px] leading-relaxed"
                                 placeholder="Mesajınızı yazın..."
                                 value={message}
                                 onChange={(e) => {
@@ -46,7 +46,8 @@ export function ChatInput() {
                                 <button
                                     type="button"
                                     onClick={() => setMessage('')}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-[#f5f5f5] dark:hover:bg-[#2d2d2d] transition-colors"
+                                    className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 p-1.5 md:p-1 rounded-lg hover:bg-[#f5f5f5] dark:hover:bg-[#2d2d2d] transition-colors touch-manipulation"
+                                    aria-label="Temizle"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 text-slate-400">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -57,7 +58,8 @@ export function ChatInput() {
                         <button
                             type="submit"
                             disabled={!message.trim() || isLoading}
-                            className="p-3 bg-[#ea580c] dark:bg-[#ea580c] hover:bg-[#c2410c] dark:hover:bg-[#c2410c] disabled:bg-[#d4d4d4] dark:disabled:bg-[#2d2d2d] disabled:cursor-not-allowed text-white rounded-xl transition-colors flex items-center justify-center shrink-0"
+                            className="p-2.5 md:p-3 bg-[#ea580c] dark:bg-[#ea580c] hover:bg-[#c2410c] dark:hover:bg-[#c2410c] disabled:bg-[#d4d4d4] dark:disabled:bg-[#2d2d2d] disabled:cursor-not-allowed text-white rounded-xl transition-colors flex items-center justify-center shrink-0 touch-manipulation min-w-[44px] min-h-[44px]"
+                            aria-label="Gönder"
                         >
                             {isLoading ? (
                                 <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
