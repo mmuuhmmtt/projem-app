@@ -40,16 +40,19 @@ export default function Home() {
           ) : (
               <div className="flex items-center justify-center flex-grow px-4">
                 <div className="text-center p-8 max-w-2xl animate-fade-in">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#f5f5f5] dark:bg-[#2d2d2d] flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-[#737373] dark:text-[#a3a3a3]">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#ea580c] to-[#c2410c] dark:from-[#ea580c] dark:to-[#c2410c] flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-10 h-10 text-white">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
                     </svg>
                   </div>
-                  <h2 className="text-xl md:text-2xl font-semibold mb-3 text-[#1a1a1a] dark:text-[#e5e5e5]">
-                    Yeni bir sohbet başlatın
+                  <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-[#1a1a1a] dark:text-[#e5e5e5]">
+                    Hoş Geldiniz!
                   </h2>
-                  <p className="text-sm md:text-base text-[#737373] dark:text-[#a3a3a3] leading-relaxed">
-                    Sol menüden bir kullanıcı seçin veya yeni bir kullanıcı oluşturun.
+                  <p className="text-base md:text-lg text-[#737373] dark:text-[#a3a3a3] leading-relaxed mb-2">
+                    Ben yapay zeka asistanınızım. Size yardımcı olmak için buradayım.
+                  </p>
+                  <p className="text-sm md:text-base text-[#a3a3a3] dark:text-[#737373] leading-relaxed">
+                    Sol menüden bir kullanıcı seçin veya yeni bir kullanıcı oluşturarak sohbete başlayın.
                   </p>
                 </div>
               </div>
