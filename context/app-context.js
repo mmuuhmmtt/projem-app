@@ -41,7 +41,29 @@ export function AppProvider({ children }) {
         // Kullanıcının mesajlarını yükle
         if (user) {
             const userMessages = messages.filter(m => m.userId === user.id);
-            setCurrentMessages(userMessages);
+            
+            // Eğer kullanıcının hiç mesajı yoksa, hoş geldin mesajı ekle
+            if (userMessages.length === 0) {
+                const welcomeMessage = {
+                    id: `msg-welcome-${user.id}`,
+                    userId: user.id,
+                    type: 'assistant',
+                    content: 'Merhaba, ben Muhammed. Size nasıl yardımcı olabilirim?',
+                    timestamp: new Date().toISOString(),
+                    citations: []
+                };
+                setCurrentMessages([welcomeMessage]);
+                // Hoş geldin mesajını kalıcı olarak ekle
+                setMessages(prevMessages => {
+                    // Eğer zaten eklenmemişse ekle
+                    if (!prevMessages.find(m => m.id === welcomeMessage.id)) {
+                        return [...prevMessages, welcomeMessage];
+                    }
+                    return prevMessages;
+                });
+            } else {
+                setCurrentMessages(userMessages);
+            }
         } else {
             setCurrentMessages([]);
         }
@@ -55,7 +77,19 @@ export function AppProvider({ children }) {
         };
         setUsers(prevUsers => [...prevUsers, newUser]);
         setSelectedUser(newUser);
-        setCurrentMessages([]); // Yeni kullanıcı için boş mesaj listesi
+        
+        // Yeni kullanıcı için hoş geldin mesajı ekle
+        const welcomeMessage = {
+            id: `msg-welcome-${newUser.id}`,
+            userId: newUser.id,
+            type: 'assistant',
+            content: 'Merhaba, ben Muhammed. Size nasıl yardımcı olabilirim?',
+            timestamp: new Date().toISOString(),
+            citations: []
+        };
+        setCurrentMessages([welcomeMessage]);
+        setMessages(prevMessages => [...prevMessages, welcomeMessage]);
+        
         return newUser;
     }, []);
 
