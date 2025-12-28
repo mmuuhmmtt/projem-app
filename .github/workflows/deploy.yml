@@ -34,6 +34,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          NODE_ENV: production
           # GitHub Pages için environment variables ekleyin
           # Secrets kullanarak API key'lerinizi ekleyebilirsiniz
           NEXT_PUBLIC_AI_PROVIDER: ${{ secrets.NEXT_PUBLIC_AI_PROVIDER || 'groq' }}

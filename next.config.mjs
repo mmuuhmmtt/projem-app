@@ -5,8 +5,9 @@ const nextConfig = {
     unoptimized: true,
   },
   // GitHub Pages için basePath ve assetPrefix ayarları
-  basePath: process.env.NODE_ENV === 'production' ? '/projem-app' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/projem-app' : '',
+  basePath: '/projem-app',
+  assetPrefix: '/projem-app',
+  trailingSlash: true,
 };
 
 export default nextConfig;
