@@ -131,29 +131,15 @@ export function AppProvider({ children }) {
                 .filter(msg => msg.type === 'user' || msg.type === 'assistant')
                 .slice(-10);
 
-            // API'ye istek gönder
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    message: content,
-                    conversationHistory: conversationHistory
-                }),
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || 'AI yanıtı alınamadı');
-            }
+            // Client-side'dan direkt AI service'i kullan (GitHub Pages için)
+            const { sendAIMessage } = await import('@/lib/ai-service');
+            const aiResponse = await sendAIMessage(content, conversationHistory);
 
             const assistantMessage = {
                 id: `msg-${Date.now() + 1}`,
                 sessionId: selectedSession.id,
                 type: 'assistant',
-                content: data.message || 'Yanıt alınamadı',
+                content: aiResponse || 'Yanıt alınamadı',
                 timestamp: new Date().toISOString(),
                 citations: []
             };
