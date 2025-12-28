@@ -12,8 +12,8 @@ export function UserSelector() {
 
     const handleCreateUser = () => {
         if (newUserName.trim()) {
-            const newUser = createUser(newUserName.trim());
-            selectUser(newUser.id);
+            // Yeni kullanıcı oluştur ve direkt sohbete başlat
+            createUser(newUserName.trim());
             setNewUserName('');
             setIsCreating(false);
         }

@@ -3,7 +3,7 @@ import { useAppContext } from '@/context/app-context';
 import { MessageBubble } from "@/components/message-bubble";
 
 export function ChatHistory() {
-    const { currentMessages, selectedSession, isLoading } = useAppContext();
+    const { currentMessages, selectedUser, isLoading } = useAppContext();
     const messagesEndRef = useRef(null);
 
     
@@ -11,7 +11,7 @@ export function ChatHistory() {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [currentMessages]);
 
-    if (!selectedSession) {
+    if (!selectedUser) {
         return null;
     }
 

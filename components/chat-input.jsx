@@ -3,19 +3,19 @@ import { useAppContext } from '@/context/app-context';
 
 export function ChatInput() {
     const [message, setMessage] = useState('');
-    const { sendMessage, selectedSession, isLoading } = useAppContext();
+    const { sendMessage, selectedUser, isLoading } = useAppContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (message.trim() && selectedSession && !isLoading) {
+        if (message.trim() && selectedUser && !isLoading) {
             const messageToSend = message.trim();
             setMessage('');
             await sendMessage(messageToSend);
         }
     };
 
-    if (!selectedSession) {
+    if (!selectedUser) {
         return null;
     }
 

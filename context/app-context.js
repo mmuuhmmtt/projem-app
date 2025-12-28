@@ -1,27 +1,17 @@
 "use client"
 
 import React, { createContext, useState, useContext, useEffect, useMemo, useCallback } from 'react';
-import { mockUsers, mockAgents, mockSessions, mockMessages } from '@/data/mock-data';
+import { mockUsers, mockMessages } from '@/data/mock-data';
 
 const defaultContextValue = {
     users: [],
-    agents: [],
-    sessions: [],
     messages: [],
     selectedUser: null,
-    selectedAgent: null,
-    selectedSession: null,
     currentMessages: [],
     isLoading: false,
     selectUser: () => {},
     createUser: () => {},
-    selectAgent: () => {},
-    createAgent: () => {},
-    selectSession: () => {},
-    createSession: () => {},
     sendMessage: () => {},
-    getUserAgents: () => [],
-    getAgentSessions: () => []
 };
 
 const AppContext = createContext(defaultContextValue);
@@ -38,81 +28,43 @@ export function useAppContext() {
 
 export function AppProvider({ children }) {
     const [users, setUsers] = useState(mockUsers);
-    const [agents, setAgents] = useState(mockAgents);
-    const [sessions, setSessions] = useState(mockSessions);
     const [messages, setMessages] = useState(mockMessages);
-
     const [selectedUser, setSelectedUser] = useState(null);
-    const [selectedAgent, setSelectedAgent] = useState(null);
-    const [selectedSession, setSelectedSession] = useState(null);
     const [currentMessages, setCurrentMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    // Kullanıcı seçilince direkt sohbet başlat
     const selectUser = useCallback((userId) => {
         const user = users.find(u => u.id === userId);
         setSelectedUser(user || null);
-        setSelectedAgent(null);
-        setSelectedSession(null);
-    }, [users]);
-
-    const createUser = useCallback((name) => {
-        const newUser = {
-            id: `user-${Date.now()}`,
-            name
-        };
-        setUsers(prevUsers => [...prevUsers, newUser]);
-        return newUser;
-    }, []);
-
-    const selectAgent = useCallback((agentId) => {
-        const agent = agents.find(a => a.id === agentId && a.userId === selectedUser?.id);
-        setSelectedAgent(agent || null);
-        setSelectedSession(null);
-    }, [agents, selectedUser]);
-
-    const createAgent = useCallback((name) => {
-        if (!selectedUser) return null;
-
-        const newAgent = {
-            id: `agent-${Date.now()}`,
-            name,
-            userId: selectedUser.id
-        };
-        setAgents(prevAgents => [...prevAgents, newAgent]);
-        return newAgent;
-    }, [selectedUser]);
-
-    const selectSession = useCallback((sessionId) => {
-        const session = sessions.find(s => s.id === sessionId && s.agentId === selectedAgent?.id);
-        setSelectedSession(session || null);
-
-        if (session) {
-            const sessionMessages = messages.filter(m => m.sessionId === session.id);
-            setCurrentMessages(sessionMessages);
+        
+        // Kullanıcının mesajlarını yükle
+        if (user) {
+            const userMessages = messages.filter(m => m.userId === user.id);
+            setCurrentMessages(userMessages);
         } else {
             setCurrentMessages([]);
         }
-    }, [sessions, selectedAgent, messages]);
+    }, [users, messages]);
 
-    const createSession = useCallback(() => {
-        if (!selectedAgent) return null;
-
-        const newSession = {
-            id: `session-${Date.now()}`,
-            name: `Oturum ${new Date().toLocaleString('tr-TR')}`,
-            agentId: selectedAgent.id,
-            createdAt: new Date().toISOString()
+    // Yeni kullanıcı oluştur ve direkt sohbete başlat
+    const createUser = useCallback((name) => {
+        const newUser = {
+            id: `user-${Date.now()}`,
+            name: name.trim()
         };
-        setSessions(prevSessions => [...prevSessions, newSession]);
-        return newSession;
-    }, [selectedAgent]);
+        setUsers(prevUsers => [...prevUsers, newUser]);
+        setSelectedUser(newUser);
+        setCurrentMessages([]); // Yeni kullanıcı için boş mesaj listesi
+        return newUser;
+    }, []);
 
     const sendMessage = useCallback(async (content) => {
-        if (!selectedSession || isLoading) return;
+        if (!selectedUser || isLoading) return;
 
         const userMessage = {
             id: `msg-${Date.now()}`,
-            sessionId: selectedSession.id,
+            userId: selectedUser.id,
             type: 'user',
             content,
             timestamp: new Date().toISOString()
@@ -137,7 +89,7 @@ export function AppProvider({ children }) {
 
             const assistantMessage = {
                 id: `msg-${Date.now() + 1}`,
-                sessionId: selectedSession.id,
+                userId: selectedUser.id,
                 type: 'assistant',
                 content: aiResponse || 'Yanıt alınamadı',
                 timestamp: new Date().toISOString(),
@@ -154,7 +106,7 @@ export function AppProvider({ children }) {
             // Hata mesajı göster
             const errorMessage = {
                 id: `msg-${Date.now() + 1}`,
-                sessionId: selectedSession.id,
+                userId: selectedUser.id,
                 type: 'assistant',
                 content: `Üzgünüm, bir hata oluştu: ${error.message}. Lütfen tekrar deneyin veya API anahtarınızı kontrol edin.`,
                 timestamp: new Date().toISOString(),
@@ -166,18 +118,9 @@ export function AppProvider({ children }) {
         } finally {
             setIsLoading(false);
         }
-    }, [selectedSession, currentMessages, isLoading]);
+    }, [selectedUser, currentMessages, isLoading]);
 
-    const getUserAgents = useCallback(() => {
-        if (!selectedUser) return [];
-        return agents.filter(agent => agent.userId === selectedUser.id);
-    }, [agents, selectedUser]);
-
-    const getAgentSessions = useCallback(() => {
-        if (!selectedAgent) return [];
-        return sessions.filter(session => session.agentId === selectedAgent.id);
-    }, [sessions, selectedAgent]);
-
+    // İlk kullanıcıyı otomatik seç
     useEffect(() => {
         if (users.length > 0 && !selectedUser) {
             selectUser(users[0].id);
@@ -186,29 +129,17 @@ export function AppProvider({ children }) {
 
     const contextValue = useMemo(() => ({
         users,
-        agents,
-        sessions,
         messages,
         selectedUser,
-        selectedAgent,
-        selectedSession,
         currentMessages,
         isLoading,
         selectUser,
         createUser,
-        selectAgent,
-        createAgent,
-        selectSession,
-        createSession,
         sendMessage,
-        getUserAgents,
-        getAgentSessions
     }), [
-        users, agents, sessions, messages,
-        selectedUser, selectedAgent, selectedSession, currentMessages, isLoading,
-        selectUser, createUser, selectAgent, createAgent,
-        selectSession, createSession, sendMessage,
-        getUserAgents, getAgentSessions
+        users, messages,
+        selectedUser, currentMessages, isLoading,
+        selectUser, createUser, sendMessage,
     ]);
 
     return (

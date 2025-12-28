@@ -3,7 +3,7 @@ import { useAppContext } from '@/context/app-context';
 import ThemeToggle from '@/components/theme-toggle';
 
 export function CompactHeader({ onMenuClick }) {
-    const { selectedUser, selectedAgent } = useAppContext();
+    const { selectedUser } = useAppContext();
 
     return (
         <div className="h-14 border-b border-[#e5e5e5] dark:border-[#2d2d2d] bg-[#ffffff] dark:bg-[#1a1a1a] flex items-center justify-between px-3 md:px-4 shrink-0">
@@ -22,12 +22,6 @@ export function CompactHeader({ onMenuClick }) {
                 {selectedUser && (
                     <div className="flex items-center gap-2 px-2 md:px-3 py-1.5 rounded-lg bg-[#fff4e6] dark:bg-[#431407] text-xs md:text-sm text-[#9a3412] dark:text-[#fdba74]">
                         <span className="font-medium truncate max-w-[120px] md:max-w-none">{selectedUser.name}</span>
-                        {selectedAgent && (
-                            <>
-                                <span className="text-[#a3a3a3]">/</span>
-                                <span className="truncate max-w-[100px] md:max-w-none">{selectedAgent.name}</span>
-                            </>
-                        )}
                     </div>
                 )}
             </div>

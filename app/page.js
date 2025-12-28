@@ -8,7 +8,7 @@ import {CompactHeader} from "@/components/compact-header";
 import {useAppContext} from "@/context/app-context";
 
 export default function Home() {
-  const { selectedSession } = useAppContext();
+  const { selectedUser } = useAppContext();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -32,7 +32,7 @@ export default function Home() {
 
         <div className="flex flex-col flex-grow overflow-hidden">
           <CompactHeader onMenuClick={() => setSidebarOpen(true)} />
-          {selectedSession ? (
+          {selectedUser ? (
               <>
                 <ChatHistory />
                 <ChatInput />
@@ -49,7 +49,7 @@ export default function Home() {
                     Yeni bir sohbet başlatın
                   </h2>
                   <p className="text-sm md:text-base text-[#737373] dark:text-[#a3a3a3] leading-relaxed">
-                    Sol menüden bir kullanıcı, agent ve oturum seçin veya yeni bir oturum oluşturun.
+                    Sol menüden bir kullanıcı seçin veya yeni bir kullanıcı oluşturun.
                   </p>
                 </div>
               </div>
