@@ -35,7 +35,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          # GitHub Pages için environment variables ekleyin
+          # GitHub Pages için environment variables
           # Secrets kullanarak API key'lerinizi ekleyebilirsiniz
           NEXT_PUBLIC_AI_PROVIDER: ${{ secrets.NEXT_PUBLIC_AI_PROVIDER || 'groq' }}
           NEXT_PUBLIC_GROQ_API_KEY: ${{ secrets.NEXT_PUBLIC_GROQ_API_KEY }}
@@ -59,4 +59,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

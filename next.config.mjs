@@ -5,8 +5,8 @@ const nextConfig = {
     unoptimized: true,
   },
   // GitHub Pages için basePath ve assetPrefix ayarları
-  basePath: '/projem-app',
-  assetPrefix: '/projem-app',
+  basePath: '/AI-ChatHub-v1',
+  assetPrefix: '/AI-ChatHub-v1',
   trailingSlash: true,
 };
 
